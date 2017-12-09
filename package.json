@@ -12,10 +12,16 @@
   "author": "Liam Scott",
   "license": "MIT",
   "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
     "body-parser": "~1.0.1",
+    "crypto": "^1.0.1",
     "express": "~4.0.0",
+    "jsonwebtoken": "^8.1.0",
     "mongoose": "~4.6.8",
-    "morgan": "~1.0.0"
+    "morgan": "~1.0.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "concurrently": "^3.5.0",

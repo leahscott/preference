@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
+import { setDashboard } from '../../actions';
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-
-    this.props.protectedTest();
+    this.props.setDashboard();
   }
 
   renderContent() {
@@ -29,7 +28,7 @@ class Dashboard extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { content: state.auth.content };
+  return { content: state.dashboard.content };
 }
 
-export default connect(mapStateToProps, actions)(Dashboard);
+export default connect(mapStateToProps, { setDashboard })(Dashboard);

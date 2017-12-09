@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { browserHistory } from 'react-router';
-import cookie from 'react-cookie';
-import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, PROTECTED_TEST } from './types';
+import Cookies from 'universal-cookie';
+import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, SET_DASHBOARD } from './types';
 
 const API_URL = '/api';
 const CLIENT_ROOT_URL = 'localhost:3000';
+
+const cookies = new Cookies();
 
 export function errorHandler(dispatch, error, type) {
   let errorMessage = '';
@@ -36,7 +37,7 @@ export function loginUser({ email, password }) {
     axios
       .post(`${API_URL}/auth/login`, { email, password })
       .then(response => {
-        cookie.save('token', response.data.token, { path: '/' });
+        cookies.set('token', response.data.token, { path: '/' });
         dispatch({ type: AUTH_USER });
         window.location.href = CLIENT_ROOT_URL + '/dashboard';
       })
@@ -56,7 +57,7 @@ export function registerUser({ email, firstName, lastName, password }) {
         password
       })
       .then(response => {
-        cookie.save('token', response.data.token, { path: '/' });
+        cookies.set('token', response.data.token, { path: '/' });
         dispatch({ type: AUTH_USER });
         window.location.href = CLIENT_ROOT_URL + '/dashboard';
       })
@@ -69,21 +70,21 @@ export function registerUser({ email, firstName, lastName, password }) {
 export function logoutUser() {
   return function(dispatch) {
     dispatch({ type: UNAUTH_USER });
-    cookie.remove('token', { path: '/' });
+    cookies.remove('token', { path: '/' });
 
     window.location.href = CLIENT_ROOT_URL + '/login';
   };
 }
 
-export function protectedTest() {
+export function setDashboard() {
   return function(dispatch) {
     axios
-      .get(`${API_URL}/protected`, {
-        headers: { Authorization: cookie.load('token') }
+      .get(`${API_URL}/dashboard`, {
+        headers: { Authorization: cookies.get('token') }
       })
       .then(response => {
         dispatch({
-          type: PROTECTED_TEST,
+          type: SET_DASHBOARD,
           payload: response.data.content
         });
       })

@@ -5089,13 +5089,13 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-cookie@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/react-cookie/-/react-cookie-2.1.1.tgz#3fd55cdcfe72350858b46e2709dba1dd60475e10"
+react-cookie@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-cookie/-/react-cookie-2.1.2.tgz#f8005f4d39e0ac906371ec45d7ed519851222f81"
   dependencies:
     hoist-non-react-statics "^1.2.0"
     prop-types "^15.0.0"
-    universal-cookie "^2.1.0"
+    universal-cookie "^2.1.2"
 
 react-dev-utils@^3.1.0:
   version "3.1.1"
@@ -6224,9 +6224,9 @@ uniqs@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/uniqs/-/uniqs-2.0.0.tgz#ffede4b36b25290696e6e165d4a59edb998e6b02"
 
-universal-cookie@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/universal-cookie/-/universal-cookie-2.1.0.tgz#2e9aa6b4eb992e34161693c943ba42b1931f6976"
+universal-cookie@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/universal-cookie/-/universal-cookie-2.1.2.tgz#7c0824c0e027f572789538932f066315611c2836"
   dependencies:
     cookie "^0.3.1"
     object-assign "^4.1.0"
