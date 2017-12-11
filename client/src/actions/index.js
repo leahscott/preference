@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, SET_DASHBOARD } from './types';
+import { AUTH_USER, AUTH_ERROR, UNAUTH_USER } from './types';
+import history from '../history';
 
 const API_URL = '/api';
 const CLIENT_ROOT_URL = 'localhost:3000';
@@ -39,7 +40,7 @@ export function loginUser({ email, password }) {
       .then(response => {
         cookies.set('token', response.data.token, { path: '/' });
         dispatch({ type: AUTH_USER });
-        window.location.href = CLIENT_ROOT_URL + '/dashboard';
+        history.push('/');
       })
       .catch(error => {
         errorHandler(dispatch, error.response, AUTH_ERROR);
@@ -59,7 +60,7 @@ export function registerUser({ email, firstName, lastName, password }) {
       .then(response => {
         cookies.set('token', response.data.token, { path: '/' });
         dispatch({ type: AUTH_USER });
-        window.location.href = CLIENT_ROOT_URL + '/dashboard';
+        history.push('/');
       })
       .catch(error => {
         errorHandler(dispatch, error.response, AUTH_ERROR);
@@ -71,25 +72,6 @@ export function logoutUser() {
   return function(dispatch) {
     dispatch({ type: UNAUTH_USER });
     cookies.remove('token', { path: '/' });
-
-    window.location.href = CLIENT_ROOT_URL + '/login';
-  };
-}
-
-export function setDashboard() {
-  return function(dispatch) {
-    axios
-      .get(`${API_URL}/dashboard`, {
-        headers: { Authorization: cookies.get('token') }
-      })
-      .then(response => {
-        dispatch({
-          type: SET_DASHBOARD,
-          payload: response.data.content
-        });
-      })
-      .catch(error => {
-        errorHandler(dispatch, error.response, AUTH_ERROR);
-      });
+    history.push('/login');
   };
 }

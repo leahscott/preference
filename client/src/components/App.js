@@ -1,6 +1,6 @@
 import React from 'react';
+import Routes from './Routes';
 import Header from './shared/Header';
-import ComponentRoutes from './shared/ComponentRoutes';
 import Footer from './shared/Footer';
 
 class App extends React.Component {
@@ -8,7 +8,7 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <ComponentRoutes />
+        <Routes />
         <Footer />
       </div>
     );

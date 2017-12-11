@@ -6,7 +6,8 @@ import reduxThunk from 'redux-thunk';
 import Cookies from 'universal-cookie';
 import { AUTH_USER } from './actions/types';
 
-import { BrowserRouter as Router } from 'react-router-dom';
+import history from './history';
+import { Router } from 'react-router-dom';
 import App from './components/App';
 import reducers from './reducers/index';
 import registerServiceWorker from './registerServiceWorker';
@@ -23,7 +24,7 @@ if (token) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
+    <Router history={history}>
       <App />
     </Router>
   </Provider>,

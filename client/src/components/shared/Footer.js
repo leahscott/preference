@@ -1,13 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 
 class Footer extends React.Component {
   render() {
-    return (
-      <div>
-        <h1>This is where the footer goes</h1>
-      </div>
-    );
+    return <Wrapper />;
   }
 }
+
+const Wrapper = styled.div`
+  background: lightgray;
+  height: 50px;
+  margin-top: 30px;
+`;
 
 export default Footer;

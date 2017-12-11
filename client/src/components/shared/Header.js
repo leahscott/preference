@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions';
 
@@ -13,14 +13,15 @@ class Header extends React.Component {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
 
-          {authenticated &&
-            <li>
-              <button onClick={logoutUser}>Logout</button>
-            </li>}
+          {authenticated
+            ? <li>
+                <button onClick={logoutUser}>Logout</button>
+              </li>
+            : <li>
+                <Link to="/login">Login</Link> or
+                <Link to="/register">Register</Link>
+              </li>}
         </ul>
       </div>
     );
@@ -28,7 +29,10 @@ class Header extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { authenticated: state.auth.authenticated };
+  return {
+    authenticated: state.auth.authenticated,
+    user: state.auth.user
+  };
 }
 
-export default connect(mapStateToProps, { logoutUser })(Header);
+export default connect(mapStateToProps, { logoutUser })(withRouter(Header));
