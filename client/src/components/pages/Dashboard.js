@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import MyPolls from '../poll/show';
+import MyPolls from '../poll';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 
@@ -29,7 +29,7 @@ class Dashboard extends React.Component {
     return (
       <div>
         {loading ? <h3>Loading...</h3> : <MyPolls polls={polls} />}
-        <Link to="/create">+ Create New Poll</Link>;
+        <Link to="poll/create">+ Create New Poll</Link>;
       </div>
     );
   }

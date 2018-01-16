@@ -10,6 +10,7 @@ import HomePage from './pages/HomePage';
 import Login from './auth/login';
 import PageNotFound from './pages/PageNotFound';
 import Register from './auth/register';
+import Poll from './poll/show';
 
 class ContentContainer extends React.Component {
   homepageOrDashboard = () => {
@@ -25,8 +26,9 @@ class ContentContainer extends React.Component {
       <Switch>
         <Route exact path="/" component={this.homepageOrDashboard()} />
 
-        <Route path="/create" component={RequireAuth(CreatePoll)} />
-        <Route path="/:id/edit" component={RequireAuth(EditPoll)} />
+        <Route exact path="/poll/create" component={RequireAuth(CreatePoll)} />
+        <Route path="/poll/:id/edit" component={RequireAuth(EditPoll)} />
+        <Route exact path="/poll/:id" component={RequireAuth(Poll)} />
 
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />

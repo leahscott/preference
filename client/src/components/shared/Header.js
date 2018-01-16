@@ -1,4 +1,11 @@
 import React from 'react';
+import {
+  Navbar,
+  NavbarGroup,
+  NavbarHeading,
+  NavbarDivide,
+  Button
+} from '@blueprintjs/core';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions';
@@ -8,22 +15,32 @@ class Header extends React.Component {
     const { authenticated, logoutUser } = this.props;
 
     return (
-      <div>
-        <ul>
-          <li>
+      <Navbar>
+        <NavbarGroup>
+          <NavbarHeading>AltVote</NavbarHeading>
+        </NavbarGroup>
+        <NavbarGroup align="right">
+          <Button className="pt-minimal" iconName="home">
             <Link to="/">Home</Link>
-          </li>
-
+          </Button>
           {authenticated
-            ? <li>
-                <button onClick={logoutUser}>Logout</button>
-              </li>
-            : <li>
-                <Link to="/login">Login</Link> or
-                <Link to="/register">Register</Link>
-              </li>}
-        </ul>
-      </div>
+            ? <Button
+                className="pt-minimal"
+                onClick={logoutUser}
+                iconName="log-out"
+              >
+                Logout
+              </Button>
+            : <div>
+                <Button className="pt-minimal" iconName="log-in">
+                  <Link to="login">Login</Link>
+                </Button>
+                <Button className="pt-minimal">
+                  <Link to="register">Register</Link>
+                </Button>
+              </div>}
+        </NavbarGroup>
+      </Navbar>
     );
   }
 }

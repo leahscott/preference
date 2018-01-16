@@ -1,28 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import Question from '../shared/Question';
 
-class MyPolls extends React.Component {
-  static propTypes = {
-    polls: PropTypes.array
-  };
+class Poll extends React.Component {
+  static questions = [
+    'How would you rate Candidate X?',
+    'How much does a lightbulb cost?'
+  ];
 
-  renderPolls = () => {
-    const { polls } = this.props;
-    return polls.map(poll =>
-      <li key={poll._id}>
-        {poll._id}
-      </li>
+  renderQuestions() {
+    return Poll.questions.map((question, index) =>
+      <Question question={question} ratingId={index} key={index} />
     );
-  };
+  }
 
   render() {
-    const { polls } = this.props;
     return (
-      <div>
-        {polls.length ? this.renderPolls() : <h3>No Polls Yet</h3>}
-      </div>
+      <center>
+        {this.renderQuestions()}
+      </center>
     );
   }
 }
 
-export default MyPolls;
+export default Poll;

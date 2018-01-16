@@ -6,6 +6,9 @@ import reduxThunk from 'redux-thunk';
 import Cookies from 'universal-cookie';
 import { AUTH_USER } from './actions/types';
 
+import 'normalize.css/normalize.css';
+import '@blueprintjs/core/dist/blueprint.css';
+
 import history from './history';
 import { Router } from 'react-router-dom';
 import App from './components/App';
