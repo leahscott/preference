@@ -6,19 +6,29 @@
   "dependencies": {
     "@blueprintjs/core": "^1.35.0",
     "axios": "^0.16.2",
+    "moment": "^2.20.1",
+    "moment-duration-format": "^2.2.0",
     "normalize.css": "^7.0.0",
+    "nouislider": "^11.0.2",
+    "pluralize": "^7.0.0",
     "polished": "^1.9.0",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-cookie": "^2.1.2",
     "react-dom": "^16.2.0",
+    "react-modal": "^3.1.11",
+    "react-notifications": "^1.4.3",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-select": "^1.2.1",
+    "react-slider": "^0.9.0",
     "redux": "^3.7.2",
     "redux-form": "^7.0.4",
     "redux-thunk": "^2.2.0",
     "styled-components": "^2.1.2",
-    "universal-cookie": "^2.1.2"
+    "universal-cookie": "^2.1.2",
+    "wnumb": "^1.1.0"
   },
   "devDependencies": {
     "react-scripts": "1.0.11"

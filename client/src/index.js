@@ -6,8 +6,11 @@ import reduxThunk from 'redux-thunk';
 import Cookies from 'universal-cookie';
 import { AUTH_USER } from './actions/types';
 
+// import vendor CSS
 import 'normalize.css/normalize.css';
 import '@blueprintjs/core/dist/blueprint.css';
+import 'react-select/dist/react-select.css';
+import 'react-notifications/lib/notifications.css';
 
 import history from './history';
 import { Router } from 'react-router-dom';

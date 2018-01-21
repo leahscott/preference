@@ -86,6 +86,10 @@ brace-expansion@^1.1.7:
     balanced-match "^1.0.0"
     concat-map "0.0.1"
 
+bson@0.1.x:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/bson/-/bson-0.1.9.tgz#7528f81ed770e6d630ca8c2ccdf5394a4096db14"
+
 bson@~0.5.4, bson@~0.5.6:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/bson/-/bson-0.5.7.tgz#0d11fe0936c1fee029e11f7063f5d0ab2422ea3e"
@@ -990,6 +994,12 @@ shebang-command@^1.2.0:
 shebang-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
+
+short-mongo-id@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/short-mongo-id/-/short-mongo-id-0.1.1.tgz#5c32a06299d7f9f76e9c58983032fdb8ffc6ac11"
+  dependencies:
+    bson "0.1.x"
 
 signal-exit@^3.0.0:
   version "3.0.2"

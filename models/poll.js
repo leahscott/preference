@@ -1,4 +1,4 @@
-const mongoose = require('mongoose'),
+const mongoose = require("mongoose"),
   Schema = mongoose.Schema;
 
 //================================
@@ -8,16 +8,26 @@ const PollSchema = new Schema(
   {
     owner: {
       type: Number,
-      required: true,
+      required: true
     },
     slug: {
       type: String,
-      required: true,
+      required: true
+    },
+    status: {
+      type: String,
+      required: true
+    },
+    title: {
+      type: String
+    },
+    expirationDate: {
+      type: Date
     }
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 );
 
-module.exports = mongoose.model('Poll', PollSchema);
+module.exports = mongoose.model("Poll", PollSchema);

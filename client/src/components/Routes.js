@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import RequireAuth from './auth/require-auth';
-import CreatePoll from './poll/create';
+import styled from 'styled-components';
 
 import Dashboard from './pages/Dashboard';
 import EditPoll from './poll/edit';
@@ -26,9 +26,8 @@ class ContentContainer extends React.Component {
       <Switch>
         <Route exact path="/" component={this.homepageOrDashboard()} />
 
-        <Route exact path="/poll/create" component={RequireAuth(CreatePoll)} />
-        <Route path="/poll/:id/edit" component={RequireAuth(EditPoll)} />
-        <Route exact path="/poll/:id" component={RequireAuth(Poll)} />
+        <Route exact path="/polls/:id/edit" component={RequireAuth(EditPoll)} />
+        <Route exact path="/polls/:id" component={RequireAuth(Poll)} />
 
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
@@ -42,5 +41,11 @@ class ContentContainer extends React.Component {
 function mapStateToProps(state) {
   return { authenticated: state.auth.authenticated };
 }
+
+const Wrapper = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2em;
+`;
 
 export default withRouter(connect(mapStateToProps)(ContentContainer));
