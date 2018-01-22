@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import Cookies from 'universal-cookie';
 import { AUTH_USER } from './actions/types';
+import Modal from 'react-modal';
 
 // import vendor CSS
 import 'normalize.css/normalize.css';
@@ -23,6 +24,8 @@ const store = createStoreWithMiddleware(reducers);
 
 const cookies = new Cookies();
 const token = cookies.get('token');
+
+console.log(Modal.defaultStyles);
 
 if (token) {
   store.dispatch({ type: AUTH_USER });

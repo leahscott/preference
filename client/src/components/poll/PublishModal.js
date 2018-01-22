@@ -1,11 +1,12 @@
 import React from 'react';
-import Modal from 'react-modal';
+import Modal from '../shared/Modal';
 import styled from 'styled-components';
 import moment from 'moment';
 import noUiSlider from 'nouislider';
 import wNumb from 'wnumb';
 import pluralize from 'pluralize';
 import { Link } from 'react-router-dom';
+import Button from '../shared/Button';
 
 import 'nouislider/distribute/nouislider.min.css';
 import './Slider.css';
@@ -120,16 +121,25 @@ class PublishModal extends React.Component {
   };
 
   render() {
-    const { show, handleClose, published } = this.props;
+    const { poll, show, handleClose, published } = this.props;
 
     return (
-      <Modal isOpen={show}>
-        <button onClick={handleClose}>Close</button>
-
+      <Modal isOpen={show} handleClose={handleClose}>
         {published
-          ? <div>
-              <h1>The Polls are Open!</h1>
-              <Link to="/">Ok</Link>
+          ? <div style={{ textAlign: 'center' }}>
+              <h2>The polls are open!</h2>
+              <p>
+                <strong>Poll title</strong> is now live. Grab the link below to
+                share it far and wide
+              </p>
+              <p>
+                <Link to={'/polls/' + poll.slug}>
+                  {window.location.origin + '/' + poll.slug}
+                </Link>
+              </p>
+              <Button>
+                <Link to="/">Ok</Link>
+              </Button>
             </div>
           : <div>
               <SliderWrapper>
@@ -140,7 +150,7 @@ class PublishModal extends React.Component {
                 This poll will close on {this.formatExpirationDate()}
               </p>
 
-              <button onClick={this.save}>Publish</button>
+              <Button onClick={this.save}>Publish</Button>
             </div>}
       </Modal>
     );

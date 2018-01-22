@@ -124,6 +124,7 @@ class EditPoll extends React.Component {
           {this.renderActions()}
 
           <PublishModal
+            poll={poll}
             show={showModal}
             handleClose={this.handleCloseModal}
             handlePublish={this.publish}
