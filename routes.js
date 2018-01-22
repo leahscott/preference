@@ -1,5 +1,6 @@
 const AuthenticationController = require("./controllers/authentication"),
 	PollController = require("./controllers/poll"),
+	BallotController = require("./controllers/ballot"),			
 	express = require("express"),
 	passportService = require("./config/passport"),
 	passport = require("passport");

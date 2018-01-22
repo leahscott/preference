@@ -1,9 +1,9 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { colors } from '../constants';
 import { StarIcon, ClearIcon } from '../icons';
 import { rgba } from 'polished';
-import { bounceIn, starburst } from '../animations';
+import { bounceIn } from '../animations';
 
 class RatingLabel extends React.Component {
   render() {

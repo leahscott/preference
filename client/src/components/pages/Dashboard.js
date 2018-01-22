@@ -9,8 +9,7 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       loading: true,
-      polls: [],
-      newPollSlug: false
+      polls: []
     };
   }
 
@@ -25,27 +24,9 @@ class Dashboard extends React.Component {
       });
   };
 
-  createPoll = () => {
-    const cookies = new Cookies();
-    axios
-      .post('http://localhost:3001/api/polls', {
-        token: cookies.get('token')
-      })
-      .then(res => {
-        this.setState({ newPollSlug: res.data.slug });
-      });
-  };
-
   render() {
-    const { loading, polls, newPollSlug } = this.state;
-    return (
-      <div>
-        {loading ? <h3>Loading...</h3> : <MyPolls polls={polls} />}
-        <button onClick={this.createPoll}>Create new poll</button>
-
-        {newPollSlug && <Redirect to={`/polls/${newPollSlug}/edit`} />}
-      </div>
-    );
+    const { loading, polls } = this.state;
+    return loading ? <h3>Loading...</h3> : <MyPolls polls={polls} />;
   }
 }
 

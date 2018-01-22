@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Navbar,
-  NavbarGroup,
-  NavbarHeading,
-  NavbarDivide,
-  Button
-} from '@blueprintjs/core';
+import { Navbar, NavbarGroup, NavbarHeading, Button } from '@blueprintjs/core';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions';

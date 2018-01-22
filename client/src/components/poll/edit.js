@@ -2,13 +2,17 @@ import React from 'react';
 import axios from 'axios';
 import { NotificationManager } from 'react-notifications';
 import PublishModal from './PublishModal';
+import { Redirect, Link } from 'react-router-dom';
+import Button from '../shared/Button';
+import moment from 'moment';
 
 class EditPoll extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       poll: null,
-      showModal: false
+      showModal: false,
+      close: false
     };
   }
 
@@ -22,9 +26,9 @@ class EditPoll extends React.Component {
   renderActions = () => {
     const { poll } = this.state;
     if (poll.status === 'draft') {
-      return <button onClick={this.handleOpenModal}>Publish Poll</button>;
+      return <Button onClick={this.handleOpenModal}>Publish Poll</Button>;
     } else if (poll.status === 'open') {
-      return <button>Close Poll</button>;
+      return <Button onClick={this.close}>Close Poll</Button>;
     }
   };
 
@@ -43,16 +47,32 @@ class EditPoll extends React.Component {
     const { poll } = this.state;
     poll.status = 'open';
     poll.expirationDate = expirationDate;
-    axios.put(`http://localhost:3001/api/polls/${poll.slug}`, poll).then(() => {
+    this.update(poll, () => {
       this.setState({ poll });
     });
+  };
+
+  update = (poll, callback) => {
+    axios
+      .put(`http://localhost:3001/api/polls/${poll.slug}`, poll)
+      .then(callback);
   };
 
   submit = e => {
     const { poll } = this.state;
     e.preventDefault();
-    axios.put(`http://localhost:3001/api/polls/${poll.slug}`, poll).then(() => {
+    this.update(poll, () => {
+      this.setState({ poll });
       NotificationManager.success('Your poll has been updated', null, 2000);
+    });
+  };
+
+  close = () => {
+    const { poll } = this.state;
+    poll.status = 'closed';
+    poll.expirationDate = moment();
+    this.update(poll, () => {
+      this.setState({ close: true });
     });
   };
 
@@ -65,16 +85,29 @@ class EditPoll extends React.Component {
   };
 
   render() {
-    const { poll, showModal } = this.state;
+    const { poll, showModal, close } = this.state;
     if (poll) {
       return (
         <div>
-          <div>
-            Start editing your new poll! <br />
-            This poll's status is: {poll.status}
-          </div>
+          {close &&
+            <Redirect
+              to={{
+                pathname: '/',
+                state: {
+                  message: 'Your poll has been closed',
+                  type: 'success'
+                }
+              }}
+            />}
 
-          <form onSubmit={this.submit}>
+          <p>
+            <Link to="/">← Back to Dashboard</Link>
+          </p>
+          <p>
+            This poll's status is: <strong>{poll.status}</strong>
+          </p>
+
+          <form onSubmit={this.submit} style={{ marginBottom: 40 }}>
             <label htmlFor="title">Title:</label>
             <input
               type="text"

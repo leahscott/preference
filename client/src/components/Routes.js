@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import RequireAuth from './auth/require-auth';
-import styled from 'styled-components';
 
 import Dashboard from './pages/Dashboard';
 import EditPoll from './poll/edit';
@@ -41,11 +40,5 @@ class ContentContainer extends React.Component {
 function mapStateToProps(state) {
   return { authenticated: state.auth.authenticated };
 }
-
-const Wrapper = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2em;
-`;
 
 export default withRouter(connect(mapStateToProps)(ContentContainer));

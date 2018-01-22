@@ -6,26 +6,30 @@ const config = require("../config/database"),
 
 function decryptToken(token) {
 	return jwt.verify(token, config.secret);
-};
+}
 
 exports.index = function(req, res) {
 	currentUserId = parseInt(decryptToken(req.headers.authorization)._id);
-	Poll.find({ owner: currentUserId }, function(err, userPolls) {
-		if (err) {
-	    return next(err);
-	  }
+	Poll.find({ owner: currentUserId })
+		.populate("ballots")
+		.exec(function(err, userPolls) {
+			if (err) {
+				return next(err);
+			}
 
-	  res.status(200).json({
-	    polls: userPolls
-	  });
-	});
+			res.status(200).json({
+				polls: userPolls
+			});
+		});
 };
 
 exports.read = function(req, res) {
-	Poll.findOne({ slug: req.params.id }, function(err, poll) {
-		if (err) return handleError(err);
-		res.status(201).json(poll);
-	});
+	Poll.findOne({ slug: req.params.id })
+		.populate("ballots")
+		.exec(function(err, poll) {
+			if (err) return handleError(err);
+			res.status(201).json(poll);
+		});
 };
 
 exports.create = function(req, res) {
@@ -57,13 +61,11 @@ exports.update = function(req, res) {
 		poll.save(function(err, poll) {
 			if (err) return handleError(err);
 			res.send(200);
-		})
+		});
 	});
 };
 
-exports.delete = function(req, res) {
-
-};
+exports.delete = function(req, res) {};
 
 exports.publish = function(req, res) {
 	Poll.findOne({ slug: req.params.id }, function(err, poll) {

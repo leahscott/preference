@@ -3,6 +3,7 @@ import { rgba } from 'polished';
 const colors = {
   // Neutral Colors
   white: '#fff',
+  grayDark: '#aaa',
   grayLight: '#f8f8f8',
   gray: '#ddd',
   black: '#000',

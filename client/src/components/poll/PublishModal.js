@@ -1,5 +1,4 @@
 import React from 'react';
-import Select from 'react-select';
 import Modal from 'react-modal';
 import styled from 'styled-components';
 import moment from 'moment';

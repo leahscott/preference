@@ -23,7 +23,8 @@ const PollSchema = new Schema(
     },
     expirationDate: {
       type: Date
-    }
+    },
+    ballots: [{ type: Schema.Types.ObjectId, ref: "Ballot" }]
   },
   {
     timestamps: true

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from '../constants';
 
 class RatingInput extends React.Component {
   render() {
