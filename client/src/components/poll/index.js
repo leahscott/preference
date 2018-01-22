@@ -12,6 +12,7 @@ import { clearFix } from 'polished';
 import { colors } from '../shared/constants';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
+import Progress from '../shared/Progress';
 
 class MyPolls extends React.Component {
   static propTypes = {
@@ -60,37 +61,45 @@ class MyPolls extends React.Component {
     return <Label>{`${responses} ${pluralize('response', responses)}`}</Label>;
   }
 
-  renderStatus(poll) {
+  percentRemaining(poll) {
+    const totalTime = moment(poll.expirationDate).diff(poll.publishDate);
+    const remainingTime = moment(poll.expirationDate).diff(moment());
+    const remaining = (totalTime - remainingTime) / totalTime * 100;
+    return Math.round(remaining);
+  }
+
+  renderStatus = poll => {
     if (poll.status === 'open') {
       return (
-        <div>
+        <Status>
+          <Progress percent={this.percentRemaining(poll)} />
           <Remaining>
             {this.timeRemaining(poll.expirationDate)} remaining
           </Remaining>
           <Divider />
           {this.renderResponses(poll.ballots.length)}
-        </div>
+        </Status>
       );
     } else if (poll.status === 'draft') {
       return (
-        <div>
-          <span style={{ fontWeight: 600 }}>Draft</span>
+        <Status>
+          <span>Draft</span>
           <Divider />
           <Label>
             Updated {this.lastUpdated(poll.updatedAt)}
           </Label>
-        </div>
+        </Status>
       );
     } else {
       return (
-        <div>
-          <span style={{ fontWeight: 600 }}>Closed</span>
+        <Status>
+          <span>Closed</span>
           <Divider />
           {this.renderResponses(poll.ballots.length)}
-        </div>
+        </Status>
       );
     }
-  }
+  };
 
   renderPolls = () => {
     const { polls } = this.props;
@@ -188,10 +197,16 @@ const PollList = styled.ul`
   margin: 30px 0;
 `;
 
-const Remaining = styled.span`
-  color: #4bb543;
-  font-weight: 600;
+const Status = styled.div`
+  font-size: 16px;
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
 `;
+
+const Remaining = styled.span`color: ${colors.green};`;
 
 const Label = styled.span`
   color: ${colors.grayDark};

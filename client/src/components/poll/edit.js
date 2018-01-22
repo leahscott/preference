@@ -47,6 +47,7 @@ class EditPoll extends React.Component {
     const { poll } = this.state;
     poll.status = 'open';
     poll.expirationDate = expirationDate;
+    poll.publishDate = moment();
     this.update(poll, () => {
       this.setState({ poll });
     });
