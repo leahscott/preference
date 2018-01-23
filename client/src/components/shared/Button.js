@@ -5,8 +5,7 @@ import { lighten } from 'polished';
 export default styled.button`
   outline: none;
   border: none;
-  min-width: 130px;
-  padding: 10px 20px;
+  padding: 10px 22px;
   border-radius: 18px;
   background: ${colors.blue};
   color: ${colors.white};

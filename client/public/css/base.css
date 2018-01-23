@@ -1,7 +1,99 @@
 body {
 	background: #f5f5f5;
+	font-size: 16px;
+}
+
+:focus {
+	outline: none !important;
 }
 
 .ReactModal__Content {
 	box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);;
+}
+
+/****************************
+			 SLIDER STYLES 
+*****************************/
+html:not([dir=rtl]) .noUi-target.noUi-horizontal .noUi-origin {
+	left: -9px;
+}
+
+.noUi-target.noUi-horizontal {
+	height: 4px;
+	box-shadow: none;
+	border: none;
+	background: #ddd;
+}
+
+.noUi-connects .noUi-connect {
+	background: #0031ff;
+}
+
+.noUi-base {
+	cursor: pointer;
+}
+
+.noUi-target .noUi-handle.noUi-handle-lower {
+	width: 16px;
+	height: 16px;
+	background: #0031ff;
+	border-radius: 50%;
+	border: none;
+	box-shadow: none;
+	cursor: pointer;
+	cursor: -webkit-grab;
+}
+
+.noUi-target .noUi-handle.noUi-handle-lower:active {
+	cursor: -webkit-grabbing;
+}
+
+.noUi-target .noUi-handle.noUi-handle-lower::before,
+.noUi-target .noUi-handle.noUi-handle-lower::after
+ {
+	display: none;
+}
+
+.noUi-target.noUi-horizontal .noUi-tooltip {
+	background: black;
+	color: white;
+	bottom: 160%;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 4px;
+	cursor: grab;
+}
+
+.noUi-target.noUi-horizontal .noUi-tooltip:focus {
+	cursor: -webkit-grabbing;
+}
+
+.noUi-target.noUi-horizontal .noUi-tooltip::after {
+	content: '';
+	position: absolute;
+	bottom: -7px;
+	width: 0; 
+  height: 0; 
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #000;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.noUi-target .noUi-marker-horizontal.noUi-marker {
+	width: 1px;
+	height: 3px;
+	margin-left: 0;
+}
+
+.noUi-target .noUi-marker-horizontal.noUi-marker-large {
+	height: 8px;
+}
+
+.noUi-value {
+	font-weight: 300;
+	font-size: 12px;
+	top: 16px;
+	color: #666;
 }

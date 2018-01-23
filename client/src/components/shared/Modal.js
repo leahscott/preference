@@ -10,7 +10,7 @@ const customStyles = {
     right: 'auto',
     bottom: 'auto',
     transform: 'translate(-50%, -50%)',
-    padding: '40px',
+    padding: '30px 40px',
     border: 'none',
     background: colors.grayLight
   },

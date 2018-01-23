@@ -7,6 +7,7 @@ import wNumb from 'wnumb';
 import pluralize from 'pluralize';
 import { Link } from 'react-router-dom';
 import Button from '../shared/Button';
+import { colors } from '../shared/constants';
 
 import 'nouislider/distribute/nouislider.min.css';
 import './Slider.css';
@@ -48,7 +49,7 @@ class PublishModal extends React.Component {
       },
       pips: {
         mode: 'steps',
-        density: 3,
+        density: 4,
         stepped: true,
         filter: this.filterSteps,
         format: wNumb({ edit: this.formatPip })
@@ -138,28 +139,60 @@ class PublishModal extends React.Component {
                 </Link>
               </p>
               <Button>
-                <Link to="/">Ok</Link>
+                <Link
+                  to={{
+                    pathname: '/',
+                    state: {
+                      message: 'Your poll has been published',
+                      type: 'success'
+                    }
+                  }}
+                >
+                  Ok
+                </Link>
               </Button>
             </div>
           : <div>
+              <h3 style={{ textAlign: 'center' }}>
+                When should this poll close?
+              </h3>
               <SliderWrapper>
                 <div ref={this.initSlider} />
               </SliderWrapper>
 
-              <p>
-                This poll will close on {this.formatExpirationDate()}
-              </p>
+              <Rule />
 
-              <Button onClick={this.save}>Publish</Button>
+              <Expiration>
+                Poll will close on {this.formatExpirationDate()}
+              </Expiration>
+
+              <PublishButton onClick={this.save}>Publish</PublishButton>
             </div>}
       </Modal>
     );
   }
 }
 
+const Expiration = styled.p`
+  float: left;
+  line-height: 40px;
+  color: #333;
+  margin: 0;
+  font-size: 16px;
+`;
+
+const PublishButton = Button.extend`float: right;`;
+
+const Rule = styled.div`
+  height: 1px;
+  background: ${colors.gray};
+  margin: 30px -100px;
+`;
+
 const SliderWrapper = styled.div`
-  width: 400px;
-  margin: 50px auto;
+  width: 500px;
+  margin: 70px auto;
+  padding: 0 15px;
 `;
 
 export default PublishModal;
